@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cs.travels.mapper.UserDaoMapper">
+<!--用户注册-->
+    <insert id="registerSave" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+       insert into t_user values(#{id},#{username},#{password},#{email})
+</insert>
+<!--检查用户名在数据库中是否存在-->
+<select id="findByUsername" resultType="com.cs.travels.entity.User">
+   select id  username,password,email from t_user where  username=#{username}
+</select>
+<select id="userLogin" resultType="com.cs.travels.entity.User">
+   select username,password from t_user where  username=#{username}
+</select>
+
+</mapper>

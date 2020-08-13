@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cs.travels.mapper.ProvinceMapper">
+    <!--    分页查询所有的身份信息-->
+    <select id="findByPage" resultType="Province">
+      select id,name,tags,placecounts
+      from t_province
+      order by placecounts
+      limit #{start},#{rows}
+    </select>
+
+    <!--查询一个的省份信息-->
+    <select id="findOne" resultType="Province">
+     select id,name,tags,placecounts
+      from t_province
+      where  id =#{id}
+   </select>
+
+    <!--    查询省份信息的总条数-->
+    <select id="findTotals" resultType="Integer">
+     select count(id) from t_province
+    </select>
+
+    <!--省份信息添加-->
+    <insert id="add" parameterType="Province" useGeneratedKeys="true" keyProperty="id">
+
+    insert into t_province values (#{id},#{name},#{tags},#{placecounts})
+
+    </insert>
+
+    <!--删除省份信息-->
+    <delete id="deleteProvinceInfo" parameterType="string" >
+     delete from t_province where id =#{id}
+    </delete>
+    <!--更新省份信息-->
+    <update id="updateProvinceInfo" parameterType="Province">
+    update   t_province set name=#{name},tags=#{tags},placecounts=#{placecounts}
+    </update>
+</mapper>

@@ -1,0 +1,22 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: travels
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/travel?characterEncoding=UTF-8
+    username: root
+    password: yifan305
+  resources:
+    static-locations: file:${upload.dir}
+mybatis:
+  mapper-locations: classpath:com/cs/travels/mapper/*.xml
+  type-aliases-package: com.cs.travels.entity
+
+logging.level.root: info
+logging.level.com.cs.travels.dao: debug
+# 文件本地上传路径(实际上就是保存在本地那个地方，或者保存在云服务器上面那个地方)
+upload.dir: /Users/Code/images
